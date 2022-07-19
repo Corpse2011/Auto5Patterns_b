@@ -1,4 +1,4 @@
-
+[![Build status](https://ci.appveyor.com/api/projects/status/dq21a903p4dl7flb?svg=true)](https://ci.appveyor.com/project/Corpse2011/auto5patterns-b)
 
 # Домашнее задание к занятию «2.3. Patterns»
 
