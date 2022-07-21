@@ -4,6 +4,7 @@ import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 import ru.netology.data.DataGenerator;
 
 import java.time.Duration;
@@ -27,7 +28,8 @@ public class ODCTest {
         val daysToAddForSecondMeeting = 7;
         val secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
         $x("//input[@placeholder=\"Город\"]").val(validUser.getCity());
-        $x("//input[@type=\"tel\"]").doubleClick().sendKeys("DELETE");
+        //$x("//input[@type=\"tel\"]").doubleClick().sendKeys("DELETE");
+        $x("//input[@type=\"tel\"]").doubleClick().sendKeys(Keys.DELETE);
         $x("//input[@placeholder=\"Дата встречи\"]").val(firstMeetingDate);
         $("[data-test-id='name'] input").val(validUser.getName());
         $("[data-test-id='phone'] input").val(validUser.getPhone());
@@ -35,7 +37,8 @@ public class ODCTest {
         $x("//*[contains(text(),'Запланировать')]").click();
         $x("//*[contains(text(),'Успешно!')]").should(visible, Duration.ofSeconds(15));
         $("[data-test-id=success-notification] .notification__content").should(exactText("Встреча успешно запланирована на " + firstMeetingDate));
-        $x("//input[@type=\"tel\"]").doubleClick().sendKeys("DELETE");
+        //$x("//input[@type=\"tel\"]").doubleClick().sendKeys("DELETE");
+        $x("//input[@type=\"tel\"]").doubleClick().sendKeys(Keys.DELETE);
         $x("//input[@placeholder=\"Дата встречи\"]").val(secondMeetingDate);
         $x("//*[contains(text(),'Запланировать')]").click();
         $("[data-test-id=replan-notification]").should(visible, Duration.ofSeconds(15));
@@ -43,3 +46,4 @@ public class ODCTest {
         $("[data-test-id=success-notification] .notification__content").should(visible, Duration.ofSeconds(15)).should(exactText("Встреча успешно запланирована на " + secondMeetingDate));
     }
 }
+//java -jar ./artifacts/app-card-delivery.jar
